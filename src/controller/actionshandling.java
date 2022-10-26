@@ -15,7 +15,7 @@ import model.InvoiceLine;
 import model.table1;
 import model.table2;
 //import view.Dialog1;
-//import view.Dialog2;
+import view.Dialog2;
 import view.NewJFrame;
 import view.createinvoice;
 
@@ -28,7 +28,7 @@ public class actionshandling implements ActionListener,ListSelectionListener  {
  //  private table1 tabel3;
    private NewJFrame j ;
  // private Dialog1 invDialog;
-  //       private   Dialog2 ItemDialog;
+        private   Dialog2 ItemDialog;
 
   public actionshandling(NewJFrame j) {
         this.j = j;
@@ -168,7 +168,7 @@ public class actionshandling implements ActionListener,ListSelectionListener  {
     }
     }    
     
-     /*if(ActionCommand=="deletein")
+     if(ActionCommand=="deletein")
           
     {System.out.println(e.getActionCommand());
         int Selectedinvoice= j.getJFrameTable().getSelectedRow();
@@ -185,7 +185,7 @@ public class actionshandling implements ActionListener,ListSelectionListener  {
             j. gettable2().setModel(ta);
              ta.fireTableDataChanged();
     }
-    }*/
+    }
      /*if(ActionCommand=="ok"){
              System.out.print("zzzzzzzzzzzzz");
      //    String date= invDialog.getInvoiceDate().getText();
@@ -207,11 +207,15 @@ public class actionshandling implements ActionListener,ListSelectionListener  {
 
       
       }*/
-      
-      
-      
-       /* 
-          if(ActionCommand=="inlineok"){
+
+
+        if(ActionCommand=="Create Inline") {
+            ItemDialog = new Dialog2(j);
+            ItemDialog.setVisible(true);
+        }
+
+
+            if(ActionCommand=="inlineok"){
           int Selectedinvoice= j.getJFrameTable().getSelectedRow();
         if(Selectedinvoice!=-1){
             InvoiceHeader invoice = j.getAllinvoices().get(Selectedinvoice);
@@ -227,12 +231,11 @@ public class actionshandling implements ActionListener,ListSelectionListener  {
               table2 line2 = new table2(invoice.getListofitems());
           j.gettable2().setModel(line2);
         line2.fireTableDataChanged();
-        invDialog.dispose();
-        invDialog=null;
-            
+
+            ItemDialog.setVisible(false);
            
 
-        }*/
+        }
         
         
       

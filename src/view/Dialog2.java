@@ -1,5 +1,5 @@
 
- 
+
 
 package view;
 
@@ -11,7 +11,7 @@ import javax.swing.JTextField;
 
 
 
-public class Dialog2 extends JDialog {
+public class Dialog2 extends JFrame {
         private JLabel ItemName;
     private JLabel ItemQuantity;
      private JLabel Itemprice;
@@ -38,8 +38,7 @@ public class Dialog2 extends JDialog {
         ok= new JButton("OK");
         ok.setActionCommand("inlineok");
 
-        cancel = new JButton("Cancel");
-        cancel.setActionCommand("cancelInvoice");
+
 
         ok.addActionListener(j.getController());
         cancel.addActionListener(j.getController());
@@ -54,7 +53,7 @@ public class Dialog2 extends JDialog {
         add( ItemquantityText);
          add(ItempriceText);
         add(ok);
-        add(cancel);
+      
         
         
         pack();
