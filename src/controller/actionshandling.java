@@ -14,7 +14,7 @@ import model.InvoiceHeader;
 import model.InvoiceLine;
 import model.table1;
 import model.table2;
-//import view.Dialog1;
+import view.Dialog1;
 import view.Dialog2;
 import view.NewJFrame;
 import view.createinvoice;
@@ -27,8 +27,8 @@ public class actionshandling implements ActionListener,ListSelectionListener  {
    
  //  private table1 tabel3;
    private NewJFrame j ;
- // private Dialog1 invDialog;
-        private   Dialog2 ItemDialog;
+ private Dialog1 invDialog;
+         private   Dialog2 ItemDialog;
 
   public actionshandling(NewJFrame j) {
         this.j = j;
@@ -46,7 +46,7 @@ public class actionshandling implements ActionListener,ListSelectionListener  {
     String ActionCommand=e.getActionCommand();
       System.out.println(ActionCommand);
       
-       if(ActionCommand=="Save File"){
+      if(ActionCommand=="Save File"){
         
              FileOperation o=new FileOperation(j);
              o.savefile(j.getAllinvoices());
@@ -56,14 +56,27 @@ public class actionshandling implements ActionListener,ListSelectionListener  {
       }  
        
           
+      if(ActionCommand=="5"){
+       invDialog = new Dialog1(j);
+        invDialog.setVisible(true);
+
       
+      }
       
-    if(ActionCommand=="5"){
+    if(ActionCommand=="ok2"){
+        System.out.print("ss");
             
              int num= j.getTotalInvNum();
       num++;
-         j.getNumLabel().setText(""+num);
-
+         
+          String name= invDialog.getCustomerName().getText();
+       String date= invDialog.getInvoiceDate().getText();
+         InvoiceHeader inv2 = new InvoiceHeader(num,name,date);
+      
+      j.getAllinvoices().add(inv2);
+      j.getTabel1().fireTableDataChanged();
+         
+   invDialog.setVisible(false);
       
       }  
     
@@ -80,7 +93,7 @@ public class actionshandling implements ActionListener,ListSelectionListener  {
     
     
     
-     if(ActionCommand=="Save"){
+     /*if(ActionCommand=="Save"){
              
              
                 int s= j.getJFrameTable().getSelectedRow();
@@ -128,7 +141,7 @@ public class actionshandling implements ActionListener,ListSelectionListener  {
       
       }  
     
-    
+    */
     
     
     
@@ -168,7 +181,7 @@ public class actionshandling implements ActionListener,ListSelectionListener  {
     }
     }    
     
-     if(ActionCommand=="deletein")
+     if(ActionCommand=="Delete Inline")
           
     {System.out.println(e.getActionCommand());
         int Selectedinvoice= j.getJFrameTable().getSelectedRow();
@@ -186,7 +199,8 @@ public class actionshandling implements ActionListener,ListSelectionListener  {
              ta.fireTableDataChanged();
     }
     }
-     /*if(ActionCommand=="ok"){
+     /*
+     if(ActionCommand=="ok"){
              System.out.print("zzzzzzzzzzzzz");
      //    String date= invDialog.getInvoiceDate().getText();
     //String customer = invDialog.getCustomerName().getText();
@@ -201,21 +215,18 @@ public class actionshandling implements ActionListener,ListSelectionListener  {
         invDialog=null;
      
     }*/
-   /*   if(ActionCommand=="createIn"){
-       invDialog = new Dialog1(j);
-        invDialog.setVisible(true);
+      if(ActionCommand=="Create Inline"){
+       ItemDialog = new Dialog2(j);
+        ItemDialog.setVisible(true);
 
       
-      }*/
-
-
-        if(ActionCommand=="Create Inline") {
-            ItemDialog = new Dialog2(j);
-            ItemDialog.setVisible(true);
-        }
-
-
-            if(ActionCommand=="inlineok"){
+      }
+      
+      
+      
+     
+          if(ActionCommand=="inlineok"){
+              System.out.print("dddfd");
           int Selectedinvoice= j.getJFrameTable().getSelectedRow();
         if(Selectedinvoice!=-1){
             InvoiceHeader invoice = j.getAllinvoices().get(Selectedinvoice);
@@ -231,8 +242,9 @@ public class actionshandling implements ActionListener,ListSelectionListener  {
               table2 line2 = new table2(invoice.getListofitems());
           j.gettable2().setModel(line2);
         line2.fireTableDataChanged();
-
-            ItemDialog.setVisible(false);
+        
+       ItemDialog.setVisible(false);
+            
            
 
         }
@@ -240,6 +252,7 @@ public class actionshandling implements ActionListener,ListSelectionListener  {
         
       
       }
+    }
     
       
       
