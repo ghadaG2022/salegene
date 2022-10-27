@@ -181,7 +181,7 @@ public class actionshandling implements ActionListener,ListSelectionListener  {
     }
     }    
     
-     if(ActionCommand=="Delete Inline")
+     if(ActionCommand=="Delete Item")
           
     {System.out.println(e.getActionCommand());
         int Selectedinvoice= j.getJFrameTable().getSelectedRow();
@@ -215,7 +215,7 @@ public class actionshandling implements ActionListener,ListSelectionListener  {
         invDialog=null;
      
     }*/
-      if(ActionCommand=="Create Inline"){
+      if(ActionCommand=="Create Item"){
        ItemDialog = new Dialog2(j);
         ItemDialog.setVisible(true);
 
